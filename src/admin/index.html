@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Katalog Toko Online</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Supabase JS Client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <!-- Header / Navbar -->
+  <header class="header">
+    <h1 id="store-name">Memuat Toko...</h1>
+    <div class="cart-icon-wrapper">
+      <span>🛒</span>
+      <span id="cart-badge" class="badge">0</span>
+    </div>
+  </header>
+
+  <!-- Container Utama -->
+  <main class="container">
+    <section class="catalog-header">
+      <h2>Katalog Produk</h2>
+    </section>
+
+    <!-- State Loading Skeleton -->
+    <div id="loading-state" class="product-grid">
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+    </div>
+
+    <!-- State Error -->
+    <div id="error-state" class="state-container hidden">
+      <p class="error-message">⚠️ Gagal memuat produk. Silakan periksa koneksi internet Anda.</p>
+      <button onclick="fetchProducts()" class="btn-retry">Coba Lagi</button>
+    </div>
+
+    <!-- State Kosong -->
+    <div id="empty-state" class="state-container hidden">
+      <p>Belum ada produk yang tersedia saat ini.</p>
+    </div>
+
+    <!-- Grid Produk Utama (FR-01) -->
+    <div id="product-grid" class="product-grid hidden"></div>
+  </main>
+
+  <script src="supabaseClient.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
