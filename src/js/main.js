@@ -2,6 +2,7 @@
 import { CONFIG } from './config.js';
 import { PLACEHOLDER } from './utils.js';
 import { fetchProducts, fetchCategories } from './api.js';
+import { openDetail } from './detail.js';
 import { grid, chips, showLoading, showError, renderChips, renderProducts, setCartCount, toast } from './ui.js';
 
 const state = { products: [], categories: [], q: '', cat: 'all', sort: 'new', cartCount: 0 };
@@ -68,14 +69,22 @@ grid.addEventListener('error', e => {
   if (e.target.tagName === 'IMG' && e.target.src !== PLACEHOLDER) e.target.src = PLACEHOLDER;
 }, true);
 
-// Tombol tambah: kirim event 'cart:add'. Modul keranjang nanti cukup mendengarkan event ini.
+// Klik foto, nama, atau "Pilih varian" membuka detail; tombol tambah langsung ke keranjang.
 grid.addEventListener('click', e => {
-  const btn = e.target.closest('.add');
-  if (!btn || btn.disabled) return;
+  const opener = e.target.closest('[data-open]');
+  if (opener) { openDetail(opener.dataset.open, state.categories); return; }
+  const btn = e.target.closest('.add[data-id]');
+  if (!btn) return;
   const product = state.products.find(p => p.product_id === btn.dataset.id);
-  document.dispatchEvent(new CustomEvent('cart:add', { detail: { product } }));
-  setCartCount(++state.cartCount); // sementara, diganti modul keranjang
-  toast(`${product.name} masuk keranjang`);
+  document.dispatchEvent(new CustomEvent('cart:add', { detail: { product, variant: null, quantity: 1 } }));
+});
+
+// Satu pintu untuk semua penambahan keranjang (kartu dan modal detail).
+// Modul keranjang nanti cukup mendengarkan event ini.
+document.addEventListener('cart:add', e => {
+  const { product, variant, quantity } = e.detail;
+  setCartCount(state.cartCount += quantity); // sementara, diganti modul keranjang
+  toast(`${product.name}${variant ? ' (' + variant.label + ')' : ''} masuk keranjang`);
 });
 
 /* ----- Mulai ----- */

@@ -40,16 +40,23 @@ export function renderChips(categories, activeId) {
 function card(p, categories) {
   const out = p.status === 'sold_out';
   const promo = p.compare_price && p.compare_price > p.base_price;
+  const hasVariants = Array.isArray(p.variants) && p.variants.length > 0;
   const cat = categories.find(c => c.category_id === p.category_id);
+  const id = esc(p.product_id);
+  const action = out
+    ? '<button class="add" type="button" disabled>Stok habis</button>'
+    : hasVariants
+      ? `<button class="add" type="button" data-open="${id}">Pilih varian</button>`
+      : `<button class="add" type="button" data-id="${id}">Tambah ke keranjang</button>`;
   return `<article class="card${out ? ' soldout' : ''}">
-    <div class="thumb">
-      <img src="${esc(p.image_main || PLACEHOLDER)}" alt="${esc(p.name)}" loading="lazy" width="400" height="400">
+    <button class="thumb" type="button" data-open="${id}" aria-label="Lihat detail ${esc(p.name)}">
+      <img src="${esc(p.image_main || PLACEHOLDER)}" alt="" loading="lazy" width="400" height="400">
       ${out ? '<span class="badge out">Habis</span>' : promo ? '<span class="badge">Promo</span>' : ''}
-    </div>
+    </button>
     ${cat ? `<p class="cat">${esc(cat.name)}</p>` : ''}
-    <h3 class="name">${esc(p.name)}</h3>
+    <h3 class="name"><button type="button" class="name-btn" data-open="${id}">${esc(p.name)}</button></h3>
     <div class="price"><strong>${rupiah(p.base_price)}</strong>${promo ? `<s>${rupiah(p.compare_price)}</s>` : ''}</div>
-    <button class="add" type="button" data-id="${esc(p.product_id)}" ${out ? 'disabled' : ''}>${out ? 'Stok habis' : 'Tambah ke keranjang'}</button>
+    ${action}
   </article>`;
 }
 

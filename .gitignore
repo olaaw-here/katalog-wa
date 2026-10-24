@@ -22,3 +22,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+supabase/migrations/2023-06-21T15-30-00_init.sql
