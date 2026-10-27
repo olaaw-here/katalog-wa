@@ -18,7 +18,7 @@
         <label class="sr" for="q">Cari produk</label>
         <input id="q" type="search" placeholder="Cari produk" autocomplete="off">
       </div>
-      <button class="cart-btn" id="cartBtn" type="button">Keranjang<span class="count" id="cartCount">0</span></button>
+      <button class="cart-btn" id="cartBtn" type="button" aria-label="Buka keranjang">Keranjang<span class="count" id="cartCount" hidden>0</span></button>
     </div>
   </header>
 
@@ -42,6 +42,24 @@
   <dialog id="detail" aria-label="Detail produk">
     <button class="d-close" type="button" data-close aria-label="Tutup">&times;</button>
     <div id="detailBody"></div>
+  </dialog>
+
+  <dialog id="cart" aria-label="Keranjang belanja">
+    <div class="c-head">
+      <h2>Keranjang</h2>
+      <button class="c-close" type="button" data-close aria-label="Tutup">&times;</button>
+    </div>
+    <div id="cartNotices"></div>
+    <ul class="c-list" id="cartItems"></ul>
+    <div class="c-foot" id="cartFoot"></div>
+  </dialog>
+
+  <dialog id="checkout" aria-label="Checkout pesanan">
+    <div class="c-head">
+      <h2>Checkout</h2>
+      <button class="c-close" type="button" data-close aria-label="Tutup">&times;</button>
+    </div>
+    <div id="checkoutBody"></div>
   </dialog>
 
   <div class="toast" id="toast" role="status"></div>

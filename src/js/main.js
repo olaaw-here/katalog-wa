@@ -3,9 +3,12 @@ import { CONFIG } from './config.js';
 import { PLACEHOLDER } from './utils.js';
 import { fetchProducts, fetchCategories } from './api.js';
 import { openDetail } from './detail.js';
-import { grid, chips, showLoading, showError, renderChips, renderProducts, setCartCount, toast } from './ui.js';
+import { grid, chips, showLoading, showError, renderChips, renderProducts, toast } from './ui.js';
+import { initCart, reconcile } from './cart.js';
+import { initCartUI, showNotices } from './cart-ui.js';
+import { initCheckout } from './checkout-ui.js';
 
-const state = { products: [], categories: [], q: '', cat: 'all', sort: 'new', cartCount: 0 };
+const state = { products: [], categories: [], q: '', cat: 'all', sort: 'new' };
 
 const sorters = {
   new:  (a, b) => new Date(b.created_at) - new Date(a.created_at),
@@ -39,6 +42,7 @@ async function loadCatalog() {
     [state.products, state.categories] = await Promise.all([fetchProducts(), fetchCategories()]);
     renderChips(state.categories, state.cat);
     render();
+    showNotices(reconcile(state.products)); // sinkronkan harga/stok keranjang dengan data terbaru
   } catch (err) {
     showError(err, loadCatalog);
   }
@@ -79,15 +83,10 @@ grid.addEventListener('click', e => {
   document.dispatchEvent(new CustomEvent('cart:add', { detail: { product, variant: null, quantity: 1 } }));
 });
 
-// Satu pintu untuk semua penambahan keranjang (kartu dan modal detail).
-// Modul keranjang nanti cukup mendengarkan event ini.
-document.addEventListener('cart:add', e => {
-  const { product, variant, quantity } = e.detail;
-  setCartCount(state.cartCount += quantity); // sementara, diganti modul keranjang
-  toast(`${product.name}${variant ? ' (' + variant.label + ')' : ''} masuk keranjang`);
-});
-
 /* ----- Mulai ----- */
 document.getElementById('storeName').textContent = CONFIG.STORE_NAME;
 document.title = `${CONFIG.STORE_NAME} | Katalog Produk`;
+initCart();
+initCartUI();
+initCheckout();
 loadCatalog();

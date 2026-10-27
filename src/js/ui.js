@@ -76,10 +76,6 @@ export function renderProducts(list, categories, { filtered, onReset }) {
   grid.innerHTML = list.map(p => card(p, categories)).join('');
 }
 
-export function setCartCount(n) {
-  document.getElementById('cartCount').textContent = n;
-}
-
 let toastTimer;
 export function toast(msg) {
   toastEl.textContent = msg;
