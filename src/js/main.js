@@ -7,6 +7,7 @@ import { grid, chips, showLoading, showError, renderChips, renderProducts, toast
 import { initCart, reconcile } from './cart.js';
 import { initCartUI, showNotices } from './cart-ui.js';
 import { initCheckout } from './checkout-ui.js';
+import { initWaFloat } from './wa-float.js';
 
 const state = { products: [], categories: [], q: '', cat: 'all', sort: 'new' };
 
@@ -89,4 +90,6 @@ document.title = `${CONFIG.STORE_NAME} | Katalog Produk`;
 initCart();
 initCartUI();
 initCheckout();
+initWaFloat();
+document.getElementById('footName').textContent = CONFIG.STORE_NAME;
 loadCatalog();

@@ -182,3 +182,89 @@ dialog#checkout::backdrop{background:rgba(10,18,14,.55)}
 .co-done h3{margin:0}
 .co-done p{margin:0;color:var(--muted)}
 .co-link{color:var(--accent);font-weight:500}
+
+/* ===== Header, navigasi, footer ===== */
+.wrap{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
+.bar{flex-wrap:wrap}
+.brand{color:inherit;text-decoration:none;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nav{display:flex;gap:4px}
+.nav a{padding:8px 12px;border-radius:999px;text-decoration:none;color:var(--muted);font-weight:500}
+.nav a:hover{color:var(--ink)}
+.nav a[aria-current="page"]{color:var(--ink);background:var(--surface);font-weight:700}
+.cart-btn{display:inline-flex;align-items:center;gap:8px;min-height:44px}
+.cart-btn .count{margin-left:0}
+.foot{border-top:1px solid var(--line);padding:20px 0 96px;color:var(--muted);font-size:.9rem}
+.foot a{color:inherit}
+.grid{padding-bottom:88px}
+img{max-width:100%}
+@media (max-width:639px){
+  .brand{font-size:1.1rem}
+  .bar{gap:8px 10px}
+  .search{order:3;flex:1 1 100%;max-width:none}
+  .cart-btn .lbl{display:none}
+  .cart-btn{padding:9px 12px}
+}
+
+/* ===== Tombol WhatsApp mengambang ===== */
+.wa-float{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:4;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-width:52px;min-height:52px;padding:0 16px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.wa-float:hover{filter:brightness(1.08)}
+.wa-float .wa-label{display:none}
+@media (min-width:640px){.wa-float .wa-label{display:inline}}
+
+/* ===== Halaman Tentang ===== */
+.about{padding-top:28px;padding-bottom:40px;display:grid;gap:24px}
+.about-hero h1{font-size:clamp(1.8rem,5vw,2.6rem);letter-spacing:-.02em;line-height:1.15;margin:0 0 10px}
+.about-hero p{max-width:62ch;color:var(--muted);font-size:1.05rem;margin:0;white-space:pre-line}
+.about-grid{display:grid;gap:16px;grid-template-columns:1fr}
+@media (min-width:760px){.about-grid{grid-template-columns:1fr 1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;min-width:0}
+.panel h2{margin:0 0 12px;font-size:1.05rem}
+.panel p{margin:0;overflow-wrap:anywhere}
+.hours{margin:0;display:grid;gap:8px}
+.hours div{display:flex;justify-content:space-between;gap:16px;padding-bottom:8px;border-bottom:1px dashed var(--line)}
+.hours div:last-child{border:0;padding:0}
+.hours dt{color:var(--muted)}
+.hours dd{margin:0;font-weight:700;text-align:right}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:10px;font-weight:700;text-decoration:none;background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:none;color:var(--accent);border:1px solid var(--accent)}
+.socials{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.socials a{display:inline-flex;align-items:center;min-height:40px;padding:0 16px;border:1px solid var(--line);border-radius:999px;color:var(--ink);text-decoration:none;font-weight:500}
+.socials a:hover{border-color:var(--accent);color:var(--accent)}
+.steps{margin:0;padding-left:20px;display:grid;gap:6px}
+
+/* ===== Penyempurnaan responsif ===== */
+.chip{min-height:40px}
+.qty button{min-width:40px;min-height:40px}
+.ci .qty button{width:40px;height:40px}
+.ci-del{min-height:40px;padding:0 8px}
+.d-thumb{width:60px;height:60px}
+.vchip{min-height:42px}
+.c-close{width:40px;height:40px}
+.d-close{width:40px;height:40px;margin-bottom:-48px}
+.toast{bottom:calc(84px + env(safe-area-inset-bottom,0px));max-width:calc(100vw - 32px);text-align:center}
+@media (min-width:640px){.toast{bottom:calc(24px + env(safe-area-inset-bottom,0px))}}
+@supports (height:1dvh){
+  dialog#detail{max-height:92dvh}
+  dialog#checkout{max-height:94dvh}
+  @media (min-width:760px){dialog#detail{max-height:88dvh}}
+}
+@media (max-width:380px){
+  .grid{gap:16px 10px}
+  .name{font-size:.95rem}
+  .ci{grid-template-columns:64px 1fr}
+  .ci img{width:64px;height:64px}
+  .ci-sub{grid-column:2}
+  .co{padding-left:12px;padding-right:12px}
+}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto !important}.toast{transition:none}}
+
+/* ===== Detail produk di ponsel: foto lebih pendek, tombol beli tidak terpotong ===== */
+@media (max-width:759px){
+  .d-main{aspect-ratio:4/3}
+  .d-buy{flex-wrap:wrap}
+  .d-buy .add{flex:1 1 170px;white-space:nowrap;padding-left:10px;padding-right:10px}
+}
+
+/* textarea ikut font halaman (default browser: monospace) */
+textarea{font:inherit;color:inherit}

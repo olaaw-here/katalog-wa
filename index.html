@@ -2,23 +2,31 @@
 <html lang="id">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Katalog Produk</title>
+  <meta name="description" content="Katalog produk toko. Pilih produk, masukkan ke keranjang, lalu pesan lewat WhatsApp.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="src/assets/css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
   <header>
     <div class="wrap bar">
-      <div class="brand" id="storeName">Toko Berkah</div>
+      <a class="brand" id="storeName" href="index.html">Toko Berkah</a>
+      <nav class="nav" aria-label="Navigasi utama">
+        <a href="index.html" aria-current="page">Katalog</a>
+        <a href="tentang.html">Tentang</a>
+      </nav>
+      <button class="cart-btn" id="cartBtn" type="button" aria-label="Buka keranjang">
+        <svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 11.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 7H6"/></svg>
+        <span class="lbl">Keranjang</span><span class="count" id="cartCount" hidden>0</span>
+      </button>
       <div class="search">
         <label class="sr" for="q">Cari produk</label>
         <input id="q" type="search" placeholder="Cari produk" autocomplete="off">
       </div>
-      <button class="cart-btn" id="cartBtn" type="button" aria-label="Buka keranjang">Keranjang<span class="count" id="cartCount" hidden>0</span></button>
     </div>
   </header>
 
@@ -38,6 +46,8 @@
     <div class="result-info" id="info" aria-live="polite"></div>
     <section class="grid" id="grid" aria-busy="true"></section>
   </main>
+
+  <footer class="foot"><div class="wrap">&copy; <span id="footName"></span> &middot; <a href="tentang.html">Tentang Toko</a></div></footer>
 
   <dialog id="detail" aria-label="Detail produk">
     <button class="d-close" type="button" data-close aria-label="Tutup">&times;</button>
@@ -64,6 +74,6 @@
 
   <div class="toast" id="toast" role="status"></div>
 
-  <script type="module" src="src/js/main.js"></script>
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>

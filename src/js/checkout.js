@@ -4,6 +4,8 @@ import { rupiah } from './utils.js';
 
 export const LIMITS = { name: 60, address: 200, note: 200 };
 const DRAFT_KEY = 'checkout_draft_v1';
+// Intl memakai spasi tak terputus (U+00A0); di pesan WhatsApp cukup spasi biasa (link lebih pendek).
+const money = n => rupiah(n).replace(/\u00a0/g, ' ');
 
 export function loadDraft() {
   try { return JSON.parse(localStorage.getItem(DRAFT_KEY)) || {}; } catch { return {}; }
@@ -40,10 +42,10 @@ function format(items, total, v, compact) {
   const lines = [`Halo ${CONFIG.STORE_NAME}, saya ingin memesan:`, ''];
   items.forEach((i, n) => {
     const variant = i.variant_label ? ` (${i.variant_label})` : '';
-    const price = compact ? '' : ` = ${rupiah(i.unit_price * i.quantity)}`;
+    const price = compact ? '' : ` = ${money(i.unit_price * i.quantity)}`;
     lines.push(`${n + 1}. ${i.name}${variant} x${i.quantity}${price}`);
   });
-  lines.push('', `*Total: ${rupiah(total)}*`, '', `Nama: ${v.name}`,
+  lines.push('', `*Total: ${money(total)}*`, '', `Nama: ${v.name}`,
     `Metode: ${v.method === 'delivery' ? 'Kirim' : 'Ambil di tempat'}`);
   if (v.method === 'delivery') lines.push(`Alamat: ${v.address}`);
   if (v.note) lines.push(`Catatan: ${v.note}`);

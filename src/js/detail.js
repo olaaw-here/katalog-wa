@@ -114,7 +114,7 @@ function refresh() {
   $('dQty').textContent = st.qty;
   const add = $('dAdd');
   add.disabled = out;
-  add.textContent = out ? 'Stok habis' : `Tambah ke keranjang \u00b7 ${rupiah(price * st.qty)}`;
+  add.textContent = out ? 'Stok habis' : `Tambah \u00b7 ${rupiah(price * st.qty)}`;
 }
 
 dlg.addEventListener('click', e => {

@@ -8,3 +8,11 @@ export const rupiah = n =>
 // Escape teks dari database sebelum dimasukkan ke HTML (cegah XSS).
 export const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
   ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+// Hanya izinkan tautan http(s); selain itu (misalnya javascript:) dibuang.
+export function safeUrl(u) {
+  try {
+    const url = new URL(String(u).trim());
+    return url.protocol === 'https:' || url.protocol === 'http:' ? url.href : '';
+  } catch { return ''; }
+}
