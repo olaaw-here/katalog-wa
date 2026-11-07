@@ -102,3 +102,4 @@ export function initCartUI() {
     if (e.target.tagName === 'IMG' && e.target.src !== PLACEHOLDER) e.target.src = PLACEHOLDER;
   }, true);
 }
+

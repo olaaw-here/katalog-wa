@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Pengaturan Admin | Katalog Toko</title>
+  <style>
+    :root {
+      --bg: #f3f7f4;
+      --surface: #ffffff;
+      --surface-alt: #f0f6f3;
+      --ink: #15251d;
+      --muted: #536760;
+      --line: #dfe8e2;
+      --accent: #0e6b4d;
+      --accent-strong: #0a533a;
+      --shadow: 0 14px 34px rgba(18, 35, 27, 0.06);
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: Inter, "Segoe UI", sans-serif; }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+
+    .admin-header {
+      position: sticky;
+      top: 0;
+      background: rgba(243, 247, 244, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .admin-topbar {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .admin-brand { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.03em; }
+    .admin-nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .admin-nav a {
+      padding: 10px 12px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-weight: 600;
+      border: 1px solid transparent;
+    }
+    .admin-nav a[aria-current="page"] {
+      background: var(--surface);
+      border-color: var(--line);
+      color: var(--ink);
+    }
+    .admin-user {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .user-pill {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .logout-btn {
+      background: var(--ink);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 20px 60px;
+    }
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    h1 { margin: 0; font-size: clamp(1.8rem, 3vw, 2.4rem); letter-spacing: -0.04em; }
+    .lead {
+      color: var(--muted);
+      margin: 12px 0 24px;
+      line-height: 1.7;
+    }
+    .form-grid {
+      display: grid;
+      gap: 18px;
+    }
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+    .field label {
+      font-weight: 700;
+    }
+    .field input,
+    .field textarea {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #f9fbfa;
+    }
+    .field textarea { min-height: 110px; resize: vertical; }
+    .actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .primary-btn {
+      border: none;
+      background: var(--accent);
+      color: white;
+      border-radius: 12px;
+      padding: 11px 18px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .secondary-btn {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 11px 18px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    @media (max-width: 640px) {
+      .panel { padding: 20px 16px; }
+      .admin-topbar { padding: 14px 16px; }
+      .admin-user { width: 100%; justify-content: space-between; }
+    }
+  </style>
+</head>
+<body>
+  <header class="admin-header">
+    <div class="admin-topbar">
+      <a class="admin-brand" href="./products.html">Katalog Admin</a>
+
+      <nav class="admin-nav" aria-label="Navigasi admin">
+        <a href="./products.html">Produk</a>
+        <a href="./wizard.html">Wizard</a>
+        <a href="./settings.html" aria-current="page">Pengaturan</a>
+      </nav>
+
+      <div class="admin-user">
+        <span id="adminUserEmail" class="user-pill">Memuat...</span>
+        <button id="logoutBtn" class="logout-btn" type="button">Keluar</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel" aria-label="Pengaturan toko">
+      <p class="eyebrow">Setting</p>
+      <h1>Pengaturan toko</h1>
+      <p class="lead">Perbarui profil toko, jam operasional, nomor WhatsApp, dan link media sosial sesuai kebutuhan bisnis Anda.</p>
+
+      <form class="form-grid">
+        <div class="field">
+          <label for="storeName">Nama toko</label>
+          <input id="storeName" type="text" value="Toko Berkah">
+        </div>
+
+        <div class="field">
+          <label for="whatsapp">Nomor WhatsApp</label>
+          <input id="whatsapp" type="text" value="6287888236551">
+        </div>
+
+        <div class="field">
+          <label for="description">Deskripsi</label>
+          <textarea id="description">Toko Berkah menjual berbagai macam produk berkualitas dengan harga terjangkau.</textarea>
+        </div>
+
+        <div class="actions">
+          <button class="primary-btn" type="button">Simpan perubahan</button>
+          <button class="secondary-btn" type="button">Batal</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script type="module" src="./js/admin-shell.js"></script>
+</body>
+</html>

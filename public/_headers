@@ -1,0 +1,5 @@
+# Netlify / Cloudflare Pages: header noindex untuk seluruh area admin.
+# (GitHub Pages tidak membaca file ini; di sana cukup mengandalkan meta robots di setiap halaman admin.)
+/admin/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Cache-Control: no-store

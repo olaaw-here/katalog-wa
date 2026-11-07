@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>Produk | Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/assets/css/style.css">
+  <link rel="stylesheet" href="/src/admin/css/admin.css">
+</head>
+<body class="ad-loading">
+  <div id="adminRoot"><p class="ad-boot">Memeriksa sesi...</p></div>
+
+  <template id="page">
+    <div class="ad-head">
+      <div><h1>Produk</h1><p class="ad-sub" id="count">&nbsp;</p></div>
+      <a class="ad-btn primary" href="product-form.html">+ Tambah produk</a>
+    </div>
+    <div class="ad-filters">
+      <label class="sr" for="fQ">Cari produk</label>
+      <input id="fQ" type="search" placeholder="Cari nama produk" autocomplete="off">
+      <label class="sr" for="fCat">Kategori</label>
+      <select id="fCat"><option value="all">Semua kategori</option></select>
+      <label class="sr" for="fStatus">Status</label>
+      <select id="fStatus">
+        <option value="all">Semua status</option><option value="active">Tersedia</option>
+        <option value="sold_out">Habis</option><option value="hidden">Disembunyikan</option>
+      </select>
+      <label class="sr" for="fView">Tampilan</label>
+      <select id="fView"><option value="active">Produk aktif</option><option value="archive">Arsip</option></select>
+    </div>
+    <ul class="ad-list" id="prodList" aria-busy="true"></ul>
+  </template>
+
+  <script type="module" src="/src/admin/js/products.js"></script>
+</body>
+</html>

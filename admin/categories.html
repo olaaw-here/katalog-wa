@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>Kategori | Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/assets/css/style.css">
+  <link rel="stylesheet" href="/src/admin/css/admin.css">
+</head>
+<body class="ad-loading">
+  <div id="adminRoot"><p class="ad-boot">Memeriksa sesi...</p></div>
+
+  <template id="page">
+    <div class="ad-head">
+      <div><h1>Kategori</h1><p class="ad-sub">Atur kategori dan urutan tampilnya di katalog.</p></div>
+      <button class="ad-btn primary" id="addCat" type="button">+ Tambah kategori</button>
+    </div>
+    <p class="ad-warn" id="catError" role="alert" hidden></p>
+    <ul class="ad-list" id="catList" aria-busy="true"></ul>
+    <dialog id="catDialog" class="ad-dialog" aria-labelledby="catDlgTitle">
+      <form id="catForm" novalidate>
+        <h2 id="catDlgTitle">Tambah kategori</h2>
+        <div class="field">
+          <label for="catName">Nama kategori</label>
+          <input id="catName" type="text" maxlength="40" autocomplete="off" aria-describedby="catNameErr">
+          <p class="f-err" id="catNameErr" hidden></p>
+        </div>
+        <div class="ad-dialog-actions">
+          <button type="button" class="ad-btn" data-cancel>Batal</button>
+          <button type="submit" class="ad-btn primary" id="catSave">Simpan</button>
+        </div>
+      </form>
+    </dialog>
+  </template>
+
+  <script type="module" src="/src/admin/js/categories.js"></script>
+</body>
+</html>

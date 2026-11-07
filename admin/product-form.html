@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>Produk | Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/assets/css/style.css">
+  <link rel="stylesheet" href="/src/admin/css/admin.css">
+</head>
+<body class="ad-loading">
+  <div id="adminRoot"><p class="ad-boot">Memeriksa sesi...</p></div>
+
+  <template id="page">
+    <div class="ad-head">
+      <div><h1 id="pfTitle">Produk</h1><p class="ad-sub"><a href="products.html">&larr; Kembali ke daftar produk</a></p></div>
+    </div>
+    <p class="ad-warn" id="pfError" role="alert" hidden></p>
+    <form id="pf" class="ad-form" novalidate hidden>
+      <section class="ad-panel">
+        <h2>Informasi produk</h2>
+        <div class="field">
+          <label for="fName">Nama produk</label>
+          <input id="fName" type="text" maxlength="120" autocomplete="off" aria-describedby="eName">
+          <p class="f-err" id="eName" hidden></p>
+        </div>
+        <div class="ad-two">
+          <div class="field">
+            <label for="fCat">Kategori</label>
+            <select id="fCat" aria-describedby="eCat"></select>
+            <p class="f-err" id="eCat" hidden></p>
+          </div>
+          <div class="field">
+            <label for="fStatus">Status</label>
+            <select id="fStatus"></select>
+          </div>
+        </div>
+        <div class="ad-two">
+          <div class="field">
+            <label for="fBase">Harga jual (Rp)</label>
+            <input id="fBase" type="text" inputmode="numeric" autocomplete="off" aria-describedby="hBase eBase">
+            <p class="f-hint" id="hBase"></p><p class="f-err" id="eBase" hidden></p>
+          </div>
+          <div class="field">
+            <label for="fCompare">Harga coret (Rp) <small>(opsional)</small></label>
+            <input id="fCompare" type="text" inputmode="numeric" autocomplete="off" aria-describedby="hCompare eCompare">
+            <p class="f-hint" id="hCompare"></p><p class="f-err" id="eCompare" hidden></p>
+          </div>
+        </div>
+        <div class="field">
+          <label for="fDesc">Deskripsi <small>(opsional)</small></label>
+          <textarea id="fDesc" rows="5" maxlength="1000" aria-describedby="hDesc eDesc"></textarea>
+          <p class="f-hint" id="hDesc"></p><p class="f-err" id="eDesc" hidden></p>
+        </div>
+        <label class="ad-check"><input type="checkbox" id="fFeat"> Tampilkan sebagai produk unggulan</label>
+      </section>
+
+      <section class="ad-panel">
+        <h2>Foto produk <span class="ad-count" id="phCount">0/5</span></h2>
+        <p class="ad-sub">JPG, PNG, atau WebP (maks. 10 MB per file). Foto otomatis dikecilkan ke WebP. Foto pertama menjadi foto utama.</p>
+        <label class="ph-drop" id="phDrop">
+          <input type="file" id="phInput" accept="image/jpeg,image/png,image/webp" multiple>
+          <span>Pilih foto atau seret ke sini</span>
+        </label>
+        <ul class="ad-errlist" id="phErrors" role="alert" hidden></ul>
+        <ul class="ph-grid" id="phGrid"></ul>
+        <p class="f-err" id="ePhotos" hidden></p>
+      </section>
+
+      <div class="ad-actions">
+        <button class="ad-btn primary" id="pfSave" type="submit">Simpan</button>
+        <a class="ad-btn" href="products.html">Batal</a>
+      </div>
+    </form>
+  </template>
+
+  <script type="module" src="/src/admin/js/product-form.js"></script>
+</body>
+</html>

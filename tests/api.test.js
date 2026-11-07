@@ -84,3 +84,15 @@ test('fetchProducts falls back correctly when product_variants relation is missi
   assert.ok(calls[1].includes('products?select=product_id,name,slug,base_price,compare_price,image_main,status,is_featured,created_at,category_id'));
   assert.ok(!calls[1].includes('product_variants'));
 });
+
+test('fetchProducts uses demo products when the Supabase host is unreachable', async () => {
+  global.fetch = async () => {
+    throw new TypeError('Failed to fetch');
+  };
+
+  const result = await api.fetchProducts();
+
+  assert.ok(Array.isArray(result));
+  assert.ok(result.length > 0);
+  assert.equal(result[0].name, 'Headphone Wireless');
+});

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>Dashboard | Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/assets/css/style.css">
+  <link rel="stylesheet" href="/src/admin/css/admin.css">
+</head>
+<body class="ad-loading">
+  <div id="adminRoot"><p class="ad-boot">Memeriksa sesi...</p></div>
+
+  <template id="page">
+    <h1>Dashboard</h1>
+    <p class="ad-sub" id="hello">Halo</p>
+    <p class="ad-warn" id="stError" role="alert" hidden></p>
+    <div class="ad-stats">
+      <div class="ad-stat"><span>Produk tampil</span><strong id="stAvail">&ndash;</strong></div>
+      <div class="ad-stat"><span>Stok habis</span><strong id="stOut">&ndash;</strong></div>
+      <div class="ad-stat"><span>Disembunyikan</span><strong id="stHidden">&ndash;</strong></div>
+    </div>
+    <div class="ad-links">
+      <a href="products.html"><strong>Produk</strong><span>Tambah, ubah, foto, dan status stok</span></a>
+      <a href="categories.html"><strong>Kategori</strong><span>Kelola kategori dan urutannya</span></a>
+      <a href="settings.html"><strong>Pengaturan</strong><span>Nomor WhatsApp dan profil toko</span></a>
+    </div>
+  </template>
+
+  <script type="module" src="/src/admin/js/dashboard.js"></script>
+</body>
+</html>
